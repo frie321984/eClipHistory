@@ -14,4 +14,8 @@ public class LogUtility {
 		System.out.println(string);
 	}
 
+	public static void warn(String message) {
+		System.err.println(message);
+	}
+
 }
