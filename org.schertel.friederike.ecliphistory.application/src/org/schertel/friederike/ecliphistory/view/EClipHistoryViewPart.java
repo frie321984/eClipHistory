@@ -31,7 +31,7 @@ public class EClipHistoryViewPart extends ViewPart implements Observer {
 		ClipboardHistory clip = ClipboardHistory.getInstance();
 		String[] strings = new String[clip.size()];
 		for (ClipboardHistoryEntry entry : clip.getList()) {
-			strings[entry.position] = entry.content;
+			strings[entry.position] = String.format("(%d) \"%s\"", entry.position, entry.content);
 		}
 		list.setItems(strings);
 	}
