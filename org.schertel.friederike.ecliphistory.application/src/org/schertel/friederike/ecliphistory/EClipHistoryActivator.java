@@ -6,8 +6,6 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
-import javax.inject.Inject;
-
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -26,22 +24,20 @@ public class EClipHistoryActivator implements BundleActivator, IStartup {
 	private Command defaultCopyCommand = null;
 	private IExecutionListener executionListener = null;
 
-	@Inject
 	public EClipHistoryActivator() {
-		// TODO Auto-generated constructor stub
-		LogUtility.debug(getClass().getSimpleName() + " constructed");
+		// do nothing
 	}
 
 	public void start(BundleContext context) throws Exception {
 
-		LogUtility.debug("Start");
-		
+		LogUtility.info("Start EClipHistory Plugin");
+
 		// add COPY listener
 		ICommandService commandService = (ICommandService) PlatformUI
 				.getWorkbench().getAdapter(ICommandService.class);
-		
+
 		if (null == commandService) {
-			LogUtility.debug("Failed to get commandService.");
+			LogUtility.error("Failed to get commandService.");
 			throw new Exception("Failed to get commandService.");
 		}
 
@@ -67,21 +63,22 @@ public class EClipHistoryActivator implements BundleActivator, IStartup {
 							.getData(DataFlavor.stringFlavor);
 					ClipboardHistory.getInstance().add(stringData);
 
-				} catch (UnsupportedFlavorException | IOException e) {
+				} catch (UnsupportedFlavorException | IOException exception) {
 					// can not copy - ignore and abort
+					LogUtility.error(exception.getMessage());
 				}
 			}
 
 			@Override
 			public void postExecuteFailure(String commandId,
 					ExecutionException exception) {
-				// do nothing
+				LogUtility.error(exception.getMessage());
 			}
 
 			@Override
 			public void notHandled(String commandId,
 					NotHandledException exception) {
-				// TODO ??
+				LogUtility.error(exception.getMessage());
 			}
 
 		};
@@ -91,7 +88,7 @@ public class EClipHistoryActivator implements BundleActivator, IStartup {
 
 	public void stop(BundleContext context) throws Exception {
 
-		LogUtility.debug("Stop");
+		LogUtility.info("Stop EClipHistory plugin");
 
 		// remove listener
 		if (null != defaultCopyCommand) {
@@ -101,7 +98,6 @@ public class EClipHistoryActivator implements BundleActivator, IStartup {
 
 	@Override
 	public void earlyStartup() {
-		// TODO Auto-generated method stub
-		LogUtility.debug("Early Startup");
+		// do nothing. start method is called automatically
 	}
 }

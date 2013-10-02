@@ -50,7 +50,7 @@ public class ClipboardHistory extends Observable {
 
 	// note that the constructor is PRIVATE (Singleton pattern)
 	private ClipboardHistory() {
-		LogUtility.debug("initialize history");
+		LogUtility.info("initialize history");
 		this.hist = new Stack<String>();
 	}
 
