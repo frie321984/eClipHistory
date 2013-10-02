@@ -3,11 +3,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: eClipHistory
 Bundle-SymbolicName: org.schertel.friederike.ecliphistory.application;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Activator: org.schertel.friederike.ecliphistory.EClipHistoryActivator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
- org.eclipse.e4.ui.di
-Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.schertel.friederike.ecliphistory.EClipHistoryActivator
+ org.eclipse.e4.ui.di,
+ javax.annotation,
+ org.eclipse.e4.core.services,
+ javax.inject
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: javax.annotation;version="1.1.0",
  javax.inject;version="1.0.0"
+Bundle-ActivationPolicy: lazy
