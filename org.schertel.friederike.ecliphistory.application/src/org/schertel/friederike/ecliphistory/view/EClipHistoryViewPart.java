@@ -1,5 +1,8 @@
 package org.schertel.friederike.ecliphistory.view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -14,7 +17,7 @@ import org.schertel.friederike.ecliphistory.model.ClipboardHistory;
 import org.schertel.friederike.ecliphistory.model.ClipboardHistoryEntry;
 import org.schertel.friederike.ecliphistory.util.LogUtility;
 
-public class EClipHistoryViewPart extends ViewPart {
+public class EClipHistoryViewPart extends ViewPart implements Observer {
 
 	private Label lblHistory;
 	private Label lblLatestEntry;
@@ -81,7 +84,14 @@ public class EClipHistoryViewPart extends ViewPart {
 		btnUpdate.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true,
 				false, 2, 1));
 		btnUpdate.setText("Update");
+		
+		ClipboardHistory.getInstance().addObserver(this);
 
+		updateContent();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
 		updateContent();
 	}
 
