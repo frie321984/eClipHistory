@@ -124,7 +124,7 @@ public class EClipHistoryViewPart extends ViewPart implements Observer {
 		@Override
 		public String getText(Object element) {
 			ClipboardHistoryEntry clipboardEntry = (ClipboardHistoryEntry) element;
-			return String.format("(%d) \"%s\"", clipboardEntry.position,
+			return String.format("(%d) \"%s\"", clipboardEntry.position + 1,
 					clipboardEntry.content);
 		}
 	}

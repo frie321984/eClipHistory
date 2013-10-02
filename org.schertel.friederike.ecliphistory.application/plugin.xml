@@ -31,7 +31,8 @@
          <commandParameter
                id="org.schertel.friederike.ecliphistory.commands.parameter.historyPosition"
                name="history position"
-               optional="false">
+               optional="false"
+               values="org.schertel.friederike.ecliphistory.util.PasteParameters">
          </commandParameter>
       </command>
       <category
