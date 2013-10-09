@@ -45,6 +45,11 @@
    <extension point="org.eclipse.ui.menus">
 	<menuContribution
        locationURI="popup:org.schertel.friederike.ecliphistory.view.EClipHistoryViewPart">
+    <command
+          commandId="org.eclipse.ui.edit.delete"
+          label="Delete"
+          style="push">
+    </command>
 	</menuContribution>
 </extension>
 
@@ -55,6 +60,9 @@
             class="org.schertel.friederike.ecliphistory.handler.PasteHandler"
             commandId="org.schertel.friederike.ecliphistory.commands.pastehistory">
       </handler>
-   </extension>
-
+   <handler
+            commandId="org.eclipse.ui.edit.delete"
+            class="org.schertel.friederike.ecliphistory.handler.DeleteHandler">
+	</handler>
+	</extension>
 </plugin>
